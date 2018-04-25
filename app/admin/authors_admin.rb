@@ -1,4 +1,12 @@
 Trestle.resource(:authors) do
+  collection do
+    Author.order(created_at: :desc).includes(:book)
+  end
+
+  search do |q|
+    q ? collection.where("name LIKE ?", "%#{q}%") : collection
+  end
+
   menu do
     item :authors, icon: "fa fa-star"
   end

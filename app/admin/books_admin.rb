@@ -39,6 +39,8 @@ Trestle.resource(:books) do
       col(xs: 6) { datetime_field :updated_at }
       col(xs: 6) { datetime_field :created_at }
     end
+
+    render "authors"
   end
 
   # By default, all parameters passed to the update and create actions will be
@@ -54,6 +56,8 @@ Trestle.resource(:books) do
 
   params do |params|
     # you can filter required parameters
-    params.require(:book).permit(:name, :created_at, :updated_at)
+    params.require(:book).permit(:name, :created_at, :updated_at,
+      authors_attributes: [:name, :id]
+      )
   end
 end

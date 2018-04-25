@@ -1,0 +1,8 @@
+<div class="nested-fields-container">
+  <%= form.fields_for :authors do |author| %>
+    <%= render 'author_fields', f: author %>
+  <% end %>
+  <div class="nested-field-links">
+    <%= link_to_add_association '+ Add Author', form, :authors, class: "btn btn-success" %>
+  </div>
+</div>
